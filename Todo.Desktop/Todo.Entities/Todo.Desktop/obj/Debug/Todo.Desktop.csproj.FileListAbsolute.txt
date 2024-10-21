@@ -1,0 +1,10 @@
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\bin\Debug\Todo.Desktop.dll
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\bin\Debug\Todo.Desktop.pdb
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\bin\Debug\Microsoft.Analytics.Interfaces.dll
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\bin\Debug\Microsoft.Analytics.Interfaces.Streaming.dll
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\bin\Debug\Microsoft.Analytics.Types.dll
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\obj\Debug\Todo.Desktop.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\obj\Debug\Todo.Desktop.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\obj\Debug\Todo.Desktop.csproj.CopyComplete
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\obj\Debug\Todo.Desktop.dll
+C:\Users\student\Desktop\Todo.Entities\Todo.Desktop\obj\Debug\Todo.Desktop.pdb
