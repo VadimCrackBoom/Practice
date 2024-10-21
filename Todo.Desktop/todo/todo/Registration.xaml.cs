@@ -59,27 +59,38 @@ namespace todo
             bool isPasswordValid = _validator.ValidatePassword(password);
             bool isNameValid = _validator.ValidateName(name);
 
-            if (isEmailValid && isPasswordValid && isNameValid && emailTB.Text != "exam@yandex.ru" && passwordTB.Text != "Введите пароль" && nameTB.Text != "Введите имя пользователя")
-                if (passwordTB.Text == againPasswordTB.Text)
-                    {
-                        MainEmpty mainEmpty = new MainEmpty();
-                        mainEmpty.Show();
-                        this.Hide();
-                    }
+            // Проверка основных условий
+            if (isEmailValid && isPasswordValid && isNameValid &&
+                email != "exam@yandex.ru" &&
+                password != "Введите пароль" &&
+                name != "Введите имя пользователя")
+            {
+                if (password == againPasswordTB.Text)
+                {
+                    MainEmpty mainEmpty = new MainEmpty();
+                    mainEmpty.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Пароли не совпадают.");
+                }
+            }
             else
             {
-                // Иначе выводим сообщение об ошибке
+                // Иначе выводим сообщение об ошибке 
                 string errorMessage = "Ошибка валидации:";
                 if (!isEmailValid)
-                    errorMessage += "\\nНеверный email.";
+                    errorMessage += "\nНеверный email.";
                 if (!isPasswordValid)
-                    errorMessage += "\\nПароль должен содержать не менее 6 символов.";
+                    errorMessage += "\nПароль должен содержать не менее 6 символов.";
                 if (!isNameValid)
-                    errorMessage += "\\nИмя должно содержать не менее 3 знаков.";
+                    errorMessage += "\nИмя должно содержать не менее 3 знаков.";
 
                 MessageBox.Show(errorMessage);
             }
         }
+
 
         private void nameTB_TextChanged(object sender, TextChangedEventArgs e)
         {
