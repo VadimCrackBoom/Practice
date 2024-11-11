@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="Tasks" Height="450" Width="800">
     <Grid>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="32" Margin="228,65,0,0" VerticalAlignment="Top" Width="172"/>
-
+        <Image HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="76" Source="/Фото профиля.png" Margin="10,10,0,0"/>
+        <Label x:Name="HomeTask" Content="Дом" HorizontalAlignment="Left" Height="40" Margin="135,64,0,0" VerticalAlignment="Top" Width="88" Foreground="#FF01F173" FontSize="18"/>
+        <Label x:Name="WorkTask" Content="Работа" HorizontalAlignment="Left" Height="40" Margin="179,66,0,0" VerticalAlignment="Top" Width="88" Foreground="#FFE6B406" HorizontalContentAlignment="Center" FontSize="18"/>
+        <Label x:Name="StudyTask" Content="Учёба" HorizontalAlignment="Left" Height="40" Margin="272,66,0,0" VerticalAlignment="Top" Width="88" Foreground="#FF0CAAFD" FontSize="18"/>
+        <Label x:Name="ChillTask" Content="Отдых" HorizontalAlignment="Left" Height="40" Margin="344,66,0,0" VerticalAlignment="Top" Width="88" Foreground="#FF7101FF" FontSize="18" RenderTransformOrigin="0.105,0.569"/>
+        <Label x:Name="TaskManagers" Content="Задачи" HorizontalAlignment="Left" Height="34" Margin="29,140,0,0" VerticalAlignment="Top" Width="109" FontSize="16" HorizontalContentAlignment="Center"/>
+        <Label x:Name="HistoryTasks" Content="История" HorizontalAlignment="Left" Height="34" Margin="29,183,0,0" VerticalAlignment="Top" Width="109" FontSize="16" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>
