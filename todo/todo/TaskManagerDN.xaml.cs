@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace todo
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для TaskManagerDN.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class TaskManagerDN : Window
     {
-        public LogIn()
+        public TaskManagerDN()
         {
             InitializeComponent();
+        }
+
+        private void DownloadTask_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
