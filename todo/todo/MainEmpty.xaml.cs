@@ -10,19 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace todo
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MainEmpty.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class MainEmpty : Window
     {
-        public LogIn()
+        public MainEmpty()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Tasks tasks = new Tasks();
+            tasks.Show();
+            this.Close();
         }
     }
 }

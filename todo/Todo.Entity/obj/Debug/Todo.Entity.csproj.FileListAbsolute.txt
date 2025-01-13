@@ -1,0 +1,10 @@
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\bin\Debug\Todo.Entity.dll
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\bin\Debug\Todo.Entity.pdb
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\obj\Debug\Todo.Entity.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\obj\Debug\Todo.Entity.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\obj\Debug\Todo.Entity.dll
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\obj\Debug\Todo.Entity.pdb
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\bin\Debug\todo.exe
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\bin\Debug\todo.pdb
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\bin\Debug\todo.exe.config
+C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\obj\Debug\Todo.Entity.csproj.CopyComplete
