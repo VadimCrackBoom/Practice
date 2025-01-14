@@ -1,50 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace todo
 {
-    /// <summary>
-    /// Логика взаимодействия для Tasks.xaml
-    /// </summary>
-    public partial class Tasks : Window
+    public partial class TasksWindow : Window
     {
-        public Tasks()
+        // Инициализация ObservableCollection для хранения списка задач
+        public ObservableCollection<TaskItem> Tasks { get; private set; }
+
+        public TasksWindow()
         {
             InitializeComponent();
+
+            // Инициализация ObservableCollection
+            Tasks = new ObservableCollection<TaskItem>
+            {
+
+            };
+
+            // Привязка коллекции задач к ListBox
+            TaskList.ItemsSource = Tasks;
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        // Обработчик нажатия кнопки "Добавить задачу"
+        private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
+            // Создаем и открываем окно добавления задачи
+            var addTaskWindow = new AddTaskWindow();
+            addTaskWindow.ShowDialog();
+
+            // Проверка, создана ли задача и что заголовок не пустой
+            if (addTaskWindow.IsTaskCreated && !string.IsNullOrWhiteSpace(addTaskWindow.TaskTitle))
             {
-                MessageBox.Show($"{checkBox.Content} выполнена!");
+                var newTask = new TaskItem
+                {
+                    Title = addTaskWindow.TaskTitle,
+                    IsComplete = false,
+                    Description = addTaskWindow.TaskDescription
+                };
+                Tasks.Add(newTask); // Добавляем новую задачу в коллекцию
             }
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        // Обработчик изменения выбора задачи в списке
+        private void TaskList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
+            // Если выбрана задача, показываем её описание
+            if (TaskList.SelectedItem is TaskItem selectedTask)
             {
-                MessageBox.Show($"{checkBox.Content} снята.");
+                TaskDetails.Text = selectedTask.Description; // выводим описание выбранной задачи
+            }
+            else
+            {
+                TaskDetails.Text = string.Empty; // очищаем текст, если нет выбранной задачи
+            }
+        }
+    }
+
+    // Класс для представления задачи
+    public class TaskItem : System.ComponentModel.INotifyPropertyChanged
+    {
+        private bool isComplete;
+        public bool IsComplete
+        {
+            get => isComplete;
+            set
+            {
+
+                isComplete = value;
+                OnPropertyChanged(nameof(IsComplete)); // уведомляем об изменении свойства
             }
         }
 
-        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
-        {
+        public string Title { get; set; }
+        public string Description { get; set; }
 
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
     }
 }

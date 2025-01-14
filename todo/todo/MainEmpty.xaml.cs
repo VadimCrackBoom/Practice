@@ -26,7 +26,7 @@ namespace todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Tasks tasks = new Tasks();
+            TasksWindow tasks = new TasksWindow();
             tasks.Show();
             this.Close();
         }

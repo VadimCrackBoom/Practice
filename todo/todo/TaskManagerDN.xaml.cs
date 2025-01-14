@@ -1,32 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace todo
 {
-    /// <summary>
-    /// Логика взаимодействия для TaskManagerDN.xaml
-    /// </summary>
-    public partial class TaskManagerDN : Window
+    public partial class AddTaskWindow : Window
     {
-        public TaskManagerDN()
+        public string TaskTitle { get; private set; }
+        public string TaskDescription { get; private set; }
+        public bool IsTaskCreated { get; private set; }
+
+        public AddTaskWindow()
         {
             InitializeComponent();
+            IsTaskCreated = false;
         }
 
-        private void DownloadTask_Click(object sender, RoutedEventArgs e)
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
+            TaskTitle = TaskTitleTextBox.Text;
+            TaskDescription = TaskDescriptionTextBox.Text;
 
+            if (!string.IsNullOrWhiteSpace(TaskTitle))
+            {
+                IsTaskCreated = true;
+                Close(); // Закрываем окно
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, введите название задачи.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close(); // Просто закрываем окно без создания задачи
         }
     }
 }

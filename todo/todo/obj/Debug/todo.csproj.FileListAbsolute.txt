@@ -78,3 +78,7 @@ C:\Users\student\Desktop\Todo.Desktop\todo\todo\obj\Debug\Tasks.g.cs
 C:\Users\student\Desktop\Todo.Desktop\todo\todo\obj\Debug\Tasks.baml
 C:\Users\student\Desktop\Todo.Desktop\todo\todo\obj\Debug\TaskManagerDN.g.cs
 C:\Users\student\Desktop\Todo.Desktop\todo\todo\obj\Debug\TaskManagerDN.baml
+C:\Users\VadyaPOOL\Desktop\todo\todo\obj\Debug\TaskManagerDN.g.cs
+C:\Users\VadyaPOOL\Desktop\todo\todo\obj\Debug\Tasks.g.cs
+C:\Users\VadyaPOOL\Desktop\todo\todo\obj\Debug\TaskManagerDN.baml
+C:\Users\VadyaPOOL\Desktop\todo\todo\obj\Debug\Tasks.baml

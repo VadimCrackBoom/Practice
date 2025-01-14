@@ -17,7 +17,7 @@ namespace Todo.Entitites
     {
         private static readonly List<User> _registeredUsers = new List<User>();
         private static int _nextId = 1;
-        private const string RepositoryPath = @"C:\Users\student\Desktop\Todo.Desktop\todo\Todo.Entity\Repository\Users.txt";
+        private const string RepositoryPath = @"C:\Users\VadyaPOOL\Desktop\todo\todo\Repository\Users.txt";
 
         private static string HashPassword(string password)
         {
