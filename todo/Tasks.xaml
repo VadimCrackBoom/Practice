@@ -1,0 +1,51 @@
+﻿<Window x:Class="todo.TasksWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:todo" 
+        mc:Ignorable="d" 
+        Title="Tasks" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="AddTask" Margin="15,371,747,17" Click="AddTask_Click" 
+                Content="+" Background="#FFFD6969" Foreground="White" FontSize="18" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Image HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" 
+               Width="76" Source="/Фото профиля.png" Margin="10,10,0,0"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="135,66,0,0">
+            <Label Content="Дом" Foreground="#FF01F173" FontSize="18"/>
+            <Label Content="Работа" Foreground="#FFE6B406" FontSize="18" Margin="10,0,0,0"/>
+            <Label Content="Учёба" Foreground="#FF0CAAFD" FontSize="18" Margin="10,0,0,0"/>
+            <Label Content="Отдых" Foreground="#FF7101FF" FontSize="18" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Label Content="Задачи" HorizontalAlignment="Left" Height="34" 
+       Margin="23,166,0,234" FontSize="16"/>
+        <Label Content="История" HorizontalAlignment="Left" Height="34" 
+       Margin="23,205,0,195" FontSize="16"/>
+
+        <!-- Scrollable checkbox list -->
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Center" Margin="138,0,0,0" Width="303" Height="200">
+            <ListBox x:Name="TaskList" SelectionChanged="TaskList_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Title}" IsChecked="{Binding IsComplete}" 
+                                  Margin="5" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+        <Rectangle HorizontalAlignment="Left" Height="273" Margin="501,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="263"/>
+
+        <TextBlock x:Name="TaskDetails" Text="Детали задач" 
+                   HorizontalAlignment="Left" Margin="510,86,0,0" VerticalAlignment="Top" FontSize="12"/>
+    </Grid>
+</Window>
