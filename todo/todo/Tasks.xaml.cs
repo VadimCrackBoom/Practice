@@ -1,35 +1,27 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace todo
 {
     public partial class TasksWindow : Window
     {
-        // Инициализация ObservableCollection для хранения списка задач
         public ObservableCollection<TaskItem> Tasks { get; private set; }
+        private bool showCompletedTasks = false; // Флаг для отслеживания отображаемых задач
 
         public TasksWindow()
         {
             InitializeComponent();
 
-            // Инициализация ObservableCollection
-            Tasks = new ObservableCollection<TaskItem>
-            {
-
-            };
-
-            // Привязка коллекции задач к ListBox
-            TaskList.ItemsSource = Tasks;
+            Tasks = new ObservableCollection<TaskItem>();
+            TaskList.ItemsSource = Tasks; // Изначально отображаем все задачи
         }
 
-        // Обработчик нажатия кнопки "Добавить задачу"
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            // Создаем и открываем окно добавления задачи
             var addTaskWindow = new AddTaskWindow();
             addTaskWindow.ShowDialog();
 
-            // Проверка, создана ли задача и что заголовок не пустой
             if (addTaskWindow.IsTaskCreated && !string.IsNullOrWhiteSpace(addTaskWindow.TaskTitle))
             {
                 var newTask = new TaskItem
@@ -38,26 +30,78 @@ namespace todo
                     IsComplete = false,
                     Description = addTaskWindow.TaskDescription
                 };
-                Tasks.Add(newTask); // Добавляем новую задачу в коллекцию
+                Tasks.Add(newTask);
+                UpdateTaskList(); // Обновляем список после добавления задачи
             }
         }
 
-        // Обработчик изменения выбора задачи в списке
         private void TaskList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            // Если выбрана задача, показываем её описание
             if (TaskList.SelectedItem is TaskItem selectedTask)
             {
-                TaskDetails.Text = selectedTask.Description; // выводим описание выбранной задачи
+                TaskDetails.Text = selectedTask.Description;
             }
             else
             {
-                TaskDetails.Text = string.Empty; // очищаем текст, если нет выбранной задачи
+                TaskDetails.Text = string.Empty;
+            }
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (TaskList.SelectedItem is TaskItem selectedTask)
+            {
+                // Удаляем только из основной коллекции задач
+                Tasks.Remove(selectedTask);
+                UpdateTaskList();
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите задачу для её удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void MarkTaskAsComplete(object sender, RoutedEventArgs e)
+        {
+            if (TaskList.SelectedItem is TaskItem selectedTask)
+            {
+                selectedTask.IsComplete = true; // отмечаем задачу как завершенную
+                UpdateTaskList(); // Обновляем содержимое списка
+            }
+        }
+
+        private void ShowCompletedTasks_Click(object sender, RoutedEventArgs e)
+        {
+            showCompletedTasks = true; // Устанавливаем флаг для показа завершенных задач
+            UpdateTaskList();
+        }
+
+        private void TasksClass_Click(object sender, RoutedEventArgs e)
+        {
+            showCompletedTasks = false; // Устанавливаем флаг для показа невыполненных задач
+            UpdateTaskList();
+        }
+
+        private void HistoryTasks_Click(object sender, RoutedEventArgs e)
+        {
+            showCompletedTasks = true; // Устанавливаем флаг для показа завершенных задач
+            UpdateTaskList();
+        }
+
+        private void UpdateTaskList()
+        {
+            // Обновляем источник данных в зависимости от выбранного значения флага showCompletedTasks
+            if (showCompletedTasks)
+            {
+                TaskList.ItemsSource = new ObservableCollection<TaskItem>(Tasks.Where(t => t.IsComplete));
+            }
+            else
+            {
+                TaskList.ItemsSource = new ObservableCollection<TaskItem>(Tasks.Where(t => !t.IsComplete));
             }
         }
     }
 
-    // Класс для представления задачи
     public class TaskItem : System.ComponentModel.INotifyPropertyChanged
     {
         private bool isComplete;
@@ -66,9 +110,8 @@ namespace todo
             get => isComplete;
             set
             {
-
                 isComplete = value;
-                OnPropertyChanged(nameof(IsComplete)); // уведомляем об изменении свойства
+                OnPropertyChanged(nameof(IsComplete));
             }
         }
 

@@ -26,26 +26,26 @@
             <Label Content="Отдых" Foreground="#FF7101FF" FontSize="18" Margin="10,0,0,0"/>
         </StackPanel>
 
-        <Label Content="Задачи" HorizontalAlignment="Left" Height="34" 
-       Margin="23,166,0,234" FontSize="16"/>
-        <Label Content="История" HorizontalAlignment="Left" Height="34" 
-       Margin="23,205,0,195" FontSize="16"/>
-
         <!-- Scrollable checkbox list -->
         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Center" Margin="138,0,0,0" Width="303" Height="200">
             <ListBox x:Name="TaskList" SelectionChanged="TaskList_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding Title}" IsChecked="{Binding IsComplete}" 
-                                  Margin="5" />
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsComplete}" Checked="MarkTaskAsComplete" Content="{Binding Title}" />
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
         </ScrollViewer>
 
         <Rectangle HorizontalAlignment="Left" Height="273" Margin="501,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="263"/>
 
         <TextBlock x:Name="TaskDetails" Text="Детали задач" 
                    HorizontalAlignment="Left" Margin="510,86,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <Button x:Name="DeleteTask" Content="Удалить" HorizontalAlignment="Left" Margin="28,282,0,0" VerticalAlignment="Top" Height="21" Width="62" Background="#FF00A0F4" BorderBrush="#FFE8E8E8" Foreground="White" Click="DeleteTask_Click"/>
+        <Button x:Name="TasksClass" Content="Задачи" HorizontalAlignment="Left" Height="31" Margin="28,169,0,0" VerticalAlignment="Top" Width="62" Background="#FFFFDE00" Foreground="Black" Click="TasksClass_Click"/>
+        <Button x:Name="HistoryTasks" Content="История" HorizontalAlignment="Left" Height="28" Margin="28,222,0,0" VerticalAlignment="Top" Width="62" Background="#FF770BFF" Foreground="White" Click="HistoryTasks_Click"/>
     </Grid>
 </Window>
