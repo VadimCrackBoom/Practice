@@ -1,128 +1,74 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace todo
 {
-    public partial class TasksWindow : Window
-    {
-        public ObservableCollection<TaskItem> Tasks { get; private set; }
-        private bool showCompletedTasks = false; // Флаг для отслеживания отображаемых задач
 
-        public TasksWindow()
+    public partial class Tasks : Window
+    {
+        public Tasks()
         {
             InitializeComponent();
-
-            Tasks = new ObservableCollection<TaskItem>();
-            TaskList.ItemsSource = Tasks; // Изначально отображаем все задачи
         }
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            var addTaskWindow = new AddTaskWindow();
-            addTaskWindow.ShowDialog();
+            ManagerTasks managerTasks = new ManagerTasks();
+            bool? result = managerTasks.ShowDialog(); // Используем ShowDialog для блокировки ввода в родительском окне
 
-            if (addTaskWindow.IsTaskCreated && !string.IsNullOrWhiteSpace(addTaskWindow.TaskTitle))
+            if (result == true) // Проверяем, успешно ли создана задача
             {
-                var newTask = new TaskItem
+                string newTask = managerTasks.NewTask; // Получаем созданную задачу
+                TaskList.Items.Add(newTask); // Добавляем задачу в левый список
+
+                // Добавим задачу в правый список с более подробной информацией
+                string[] taskDetail = newTask.Split(new[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+                if (taskDetail.Length > 0)
                 {
-                    Title = addTaskWindow.TaskTitle,
-                    IsComplete = false,
-                    Description = addTaskWindow.TaskDescription
-                };
-                Tasks.Add(newTask);
-                UpdateTaskList(); // Обновляем список после добавления задачи
+                    string details = taskDetail[0]; // Название задачи
+                    TaskDescriptionList.Items.Add(details + "\n" + (taskDetail.Length > 1 ? taskDetail[1] : "Описание не задано"));
+                }
             }
         }
 
-        private void TaskList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void TaskList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TaskList.SelectedItem is TaskItem selectedTask)
+            if (TaskList.SelectedItem != null)
             {
-                TaskDetails.Text = selectedTask.Description;
+                ReadyTask.Visibility = Visibility.Visible;
+                DeleteTask.Visibility = Visibility.Visible;
+
+                // Обновление правого ListBox с выбором
+                var selectedTask = TaskList.SelectedItem.ToString();
+                TaskDescriptionList.Items.Clear();
+                TaskDescriptionList.Items.Add(selectedTask);
             }
             else
             {
-                TaskDetails.Text = string.Empty;
+                ReadyTask.Visibility = Visibility.Collapsed;
+                DeleteTask.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (TaskList.SelectedItem is TaskItem selectedTask)
+            if (TaskList.SelectedItem != null)
             {
-                // Удаляем только из основной коллекции задач
-                Tasks.Remove(selectedTask);
-                UpdateTaskList();
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста, выберите задачу для её удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                TaskList.Items.Remove(TaskList.SelectedItem); // Удаляем из левого списка
+                TaskDescriptionList.Items.Clear(); // Очищаем правый список, если удаляем задачу
             }
         }
 
-        private void MarkTaskAsComplete(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (TaskList.SelectedItem is TaskItem selectedTask)
-            {
-                selectedTask.IsComplete = true; // отмечаем задачу как завершенную
-                UpdateTaskList(); // Обновляем содержимое списка
-            }
+            // Логика для пометки задачи как готовой
         }
 
-        private void ShowCompletedTasks_Click(object sender, RoutedEventArgs e)
+        private void TaskDescriptionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            showCompletedTasks = true; // Устанавливаем флаг для показа завершенных задач
-            UpdateTaskList();
-        }
-
-        private void TasksClass_Click(object sender, RoutedEventArgs e)
-        {
-            showCompletedTasks = false; // Устанавливаем флаг для показа невыполненных задач
-            UpdateTaskList();
-        }
-
-        private void HistoryTasks_Click(object sender, RoutedEventArgs e)
-        {
-            showCompletedTasks = true; // Устанавливаем флаг для показа завершенных задач
-            UpdateTaskList();
-        }
-
-        private void UpdateTaskList()
-        {
-            // Обновляем источник данных в зависимости от выбранного значения флага showCompletedTasks
-            if (showCompletedTasks)
-            {
-                TaskList.ItemsSource = new ObservableCollection<TaskItem>(Tasks.Where(t => t.IsComplete));
-            }
-            else
-            {
-                TaskList.ItemsSource = new ObservableCollection<TaskItem>(Tasks.Where(t => !t.IsComplete));
-            }
-        }
-    }
-
-    public class TaskItem : System.ComponentModel.INotifyPropertyChanged
-    {
-        private bool isComplete;
-        public bool IsComplete
-        {
-            get => isComplete;
-            set
-            {
-                isComplete = value;
-                OnPropertyChanged(nameof(IsComplete));
-            }
-        }
-
-        public string Title { get; set; }
-        public string Description { get; set; }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            // Тут может быть логика для обработки выбора в правом списке, если это необходимо
         }
     }
 }
+

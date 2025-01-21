@@ -1,9 +1,17 @@
 ﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using static todo.Registration;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using todo.Repository;
 
 namespace todo
 {
@@ -13,13 +21,13 @@ namespace todo
     public partial class LogIn : Window
     {
         private InputValidator _validator;
-
+        private UserRepository _userRepository; // Добавляем поле для UserRepository
         public LogIn()
         {
             InitializeComponent();
             _validator = new InputValidator();
+            _userRepository = new UserRepository(); // Инициализируем UserRepository
         }
-
         public void RemoveText(object sender, EventArgs e)
         {
             TextBox instance = (TextBox)sender;
@@ -53,78 +61,21 @@ namespace todo
 
             if (isEmailValid && isPasswordValid && emailTB.Text != "exam@yandex.ru" && passwordTB.Text != "Введите пароль")
             {
-                // Проверка данных в файле пользователей
-                if (VerifyUser(email, password))
-                {
-                    MainEmpty mainEmpty = new MainEmpty();
-                    mainEmpty.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Неверный email или пароль.");
-                }
+                MainEmpty mainEmpty = new MainEmpty();
+                mainEmpty.Show();
+                this.Hide();
             }
             else
             {
-                // Иначе выводим сообщение об ошибке 
+                // Иначе выводим сообщение об ошибке
                 string errorMessage = "Ошибка валидации:";
                 if (!isEmailValid)
-                    errorMessage += "\nНеверный email.";
+                    errorMessage += "\\nНеверный email.";
                 if (!isPasswordValid)
-                    errorMessage += "\nПароль должен содержать не менее 6 символов.";
+                    errorMessage += "\\nПароль должен содержать не менее 6 символов.";
 
                 MessageBox.Show(errorMessage);
             }
-        }
-
-        private bool VerifyUser(string email, string password)
-        {
-            string filePath = "C:\\Users\\VadyaPOOL\\Desktop\\todo\\todo\\Repository\\Users.txt";
-
-            if (!File.Exists(filePath))
-            {
-                MessageBox.Show("Файл пользователей не найден.");
-                return false;
-            }
-
-            string[] userRecords = File.ReadAllLines(filePath);
-            foreach (string record in userRecords)
-            {
-                string[] userData = record.Split(';');
-                if (userData.Length >= 3)
-                {
-                    string storedName = userData[0];
-                    string storedEmail = userData[1];
-                    string storedPassword = userData[2];
-
-                    if (storedEmail.Equals(email, StringComparison.OrdinalIgnoreCase) && storedPassword == password)
-                    {
-                        return true; // Успешная проверка
-                    }
-                }
-            }
-
-            return false; // Проверка не удалась
-        }
-    }
-
-    public class InputValidator
-    {
-        public bool ValidateEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            string emailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
-                + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
-                + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
-            return Regex.IsMatch(email, emailPattern);
-        }
-
-        public bool ValidatePassword(string password)
-        {
-            return !string.IsNullOrWhiteSpace(password) && password.Length >= 6;
         }
     }
 }

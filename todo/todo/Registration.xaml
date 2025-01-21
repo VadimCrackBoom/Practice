@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:todo"
         mc:Ignorable="d"
-        Title="Registration" Height="600" Width="800" WindowState="Minimized" MinWidth="800" MinHeight="600">
-    <Grid Height="600" Width="800">
+        Title="Registration" Height="600" Width="800">
+    <Canvas Height="600" Width="800">
         <Image Height="150" Margin="51,42,593,0" VerticalAlignment="Top" Source="/logo.png"/>
-        <Label Content="Welcome back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="auto" FontSize="36" Margin="426,42,0,0"/>
+        <Label Content="Welcome back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="50" FontSize="36" Margin="426,42,0,0"/>
         <Label Content="Имя пользователя" FontSize="22" Margin="426,100,173,457"/>
-        <TextBox x:Name="nameTB" Margin="431,143,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="auto" Text="Введите имя пользователя" GotFocus="RemoveText" LostFocus="AddText" Tag="Введите имя пользователя" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4" TextChanged="nameTB_TextChanged">
+        <TextBox x:Name="nameTB" Margin="431,143,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="18" Text="Введите имя пользователя" GotFocus="RemoveText" LostFocus="AddText" Tag="Введите имя пользователя" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4" TextChanged="nameTB_TextChanged">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
             </TextBox.BorderBrush>
@@ -51,5 +51,5 @@
             </Button.Resources>
         </Button>
 
-    </Grid>
+    </Canvas>
 </Window>

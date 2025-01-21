@@ -1,51 +1,30 @@
-﻿<Window x:Class="todo.TasksWindow" 
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:local="clr-namespace:todo" 
-        mc:Ignorable="d" 
+﻿<Window x:Class="todo.Tasks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Tasks" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="AddTask" Margin="15,371,747,17" Click="AddTask_Click" 
-                Content="+" Background="#FFFD6969" Foreground="White" FontSize="18" FontWeight="Bold">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+    <Canvas x:Name="grid">
+        <Image HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="76" Source="/Фото профиля.png" Margin="10,10,0,0"/>
 
-        <Image HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" 
-               Width="76" Source="/Фото профиля.png" Margin="10,10,0,0"/>
+        <!-- Заголовки категорий задач -->
+        <Label x:Name="HomeTask" Content="Дом" HorizontalAlignment="Left" Margin="124,64,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0FFF33"/>
+        <Label x:Name="WorkingTask" Content="Работа" HorizontalAlignment="Left" Margin="184,64,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FFFF6900"/>
+        <Label x:Name="LessonsTask" Content="Учёба" HorizontalAlignment="Left" Margin="265,64,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF001BFF"/>
+        <Label x:Name="ChillTask" Content="Отдых" HorizontalAlignment="Left" Margin="337,64,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FFCE00FF"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="135,66,0,0">
-            <Label Content="Дом" Foreground="#FF01F173" FontSize="18"/>
-            <Label Content="Работа" Foreground="#FFE6B406" FontSize="18" Margin="10,0,0,0"/>
-            <Label Content="Учёба" Foreground="#FF0CAAFD" FontSize="18" Margin="10,0,0,0"/>
-            <Label Content="Отдых" Foreground="#FF7101FF" FontSize="18" Margin="10,0,0,0"/>
-        </StackPanel>
+        <!-- Заголовок для списка задач -->
+        <Label Content="Задачи" HorizontalAlignment="Left" Margin="23,163,0,0" VerticalAlignment="Top" FontSize="16"/>
 
-        <!-- Scrollable checkbox list -->
-        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Center" Margin="138,0,0,0" Width="303" Height="200">
-            <ListBox x:Name="TaskList" SelectionChanged="TaskList_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding IsComplete}" Checked="MarkTaskAsComplete" Content="{Binding Title}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <Button x:Name="AddTask" Height="42" Canvas.Left="27" Canvas.Top="338" Width="32" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFF0606" Content="+" Foreground="#FFFCFCFC" FontSize="16" FontWeight="Bold" Click="AddTask_Click"/>
 
-        </ScrollViewer>
+        <!-- Первый ListBox для отображения списка задач -->
+        <ListBox x:Name="TaskList" Height="298" Canvas.Left="145" Width="222" SelectionChanged="TaskList_SelectionChanged" Canvas.Top="103" />
 
-        <Rectangle HorizontalAlignment="Left" Height="273" Margin="501,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="263"/>
+        <!-- Второй ListBox для отображения описания выбранной задачи -->
+        <ListBox x:Name="TaskDescriptionList" Height="321" Canvas.Left="529" Canvas.Top="103" Width="222" SelectionChanged="TaskDescriptionList_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
-        <TextBlock x:Name="TaskDetails" Text="Детали задач" 
-                   HorizontalAlignment="Left" Margin="510,86,0,0" VerticalAlignment="Top" FontSize="12"/>
-        <Button x:Name="DeleteTask" Content="Удалить" HorizontalAlignment="Left" Margin="28,282,0,0" VerticalAlignment="Top" Height="21" Width="62" Background="#FF00A0F4" BorderBrush="#FFE8E8E8" Foreground="White" Click="DeleteTask_Click"/>
-        <Button x:Name="TasksClass" Content="Задачи" HorizontalAlignment="Left" Height="31" Margin="28,169,0,0" VerticalAlignment="Top" Width="62" Background="#FFFFDE00" Foreground="Black" Click="TasksClass_Click"/>
-        <Button x:Name="HistoryTasks" Content="История" HorizontalAlignment="Left" Height="28" Margin="28,222,0,0" VerticalAlignment="Top" Width="62" Background="#FF770BFF" Foreground="White" Click="HistoryTasks_Click"/>
-    </Grid>
+        <!-- Кнопки для управления задачами -->
+        <Button x:Name="ReadyTask" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Готово" Width="186" Height="40" FontSize="14" Click="Button_Click_1" Canvas.Left="547" Canvas.Top="312" Visibility="Collapsed"/>
+        <Button x:Name="DeleteTask" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Удалить" Width="186" Height="40" FontSize="14" Click="Button_Click" Canvas.Left="547" Canvas.Top="370" Visibility="Collapsed"/>
+        <Label x:Name="HistoryTask" Content="История" FontSize="16" Canvas.Left="18" Canvas.Top="212" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+    </Canvas>
 </Window>
