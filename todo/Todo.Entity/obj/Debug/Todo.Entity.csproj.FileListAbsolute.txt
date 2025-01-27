@@ -1,6 +1,0 @@
-C:\Users\VadyaPOOL\Desktop\Practice-Lab2\todo\Todo.Entity\bin\Debug\Todo.Entity.dll
-C:\Users\VadyaPOOL\Desktop\Practice-Lab2\todo\Todo.Entity\bin\Debug\Todo.Entity.pdb
-C:\Users\VadyaPOOL\Desktop\Practice-Lab2\todo\Todo.Entity\obj\Debug\Todo.Entity.csproj.AssemblyReference.cache
-C:\Users\VadyaPOOL\Desktop\Practice-Lab2\todo\Todo.Entity\obj\Debug\Todo.Entity.csproj.CoreCompileInputs.cache
-C:\Users\VadyaPOOL\Desktop\Practice-Lab2\todo\Todo.Entity\obj\Debug\Todo.Entity.dll
-C:\Users\VadyaPOOL\Desktop\Practice-Lab2\todo\Todo.Entity\obj\Debug\Todo.Entity.pdb
