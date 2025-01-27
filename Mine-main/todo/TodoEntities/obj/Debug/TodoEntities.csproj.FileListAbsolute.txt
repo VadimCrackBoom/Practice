@@ -1,0 +1,18 @@
+C:\Users\student\Downloads\Новая папка\RKIS_repos-Lab2\todo\TodoEntities\bin\Debug\TodoEntities.dll
+C:\Users\student\Downloads\Новая папка\RKIS_repos-Lab2\todo\TodoEntities\bin\Debug\TodoEntities.pdb
+C:\Users\student\Downloads\Новая папка\RKIS_repos-Lab2\todo\TodoEntities\obj\Debug\TodoEntities.csproj.AssemblyReference.cache
+C:\Users\student\Downloads\Новая папка\RKIS_repos-Lab2\todo\TodoEntities\obj\Debug\TodoEntities.csproj.CoreCompileInputs.cache
+C:\Users\student\Downloads\Новая папка\RKIS_repos-Lab2\todo\TodoEntities\obj\Debug\TodoEntities.dll
+C:\Users\student\Downloads\Новая папка\RKIS_repos-Lab2\todo\TodoEntities\obj\Debug\TodoEntities.pdb
+C:\Users\student\Desktop\RKIS_repos-Lab3\todo\TodoEntities\bin\Debug\TodoEntities.dll
+C:\Users\student\Desktop\RKIS_repos-Lab3\todo\TodoEntities\bin\Debug\TodoEntities.pdb
+C:\Users\student\Desktop\RKIS_repos-Lab3\todo\TodoEntities\obj\Debug\TodoEntities.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\RKIS_repos-Lab3\todo\TodoEntities\obj\Debug\TodoEntities.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\RKIS_repos-Lab3\todo\TodoEntities\obj\Debug\TodoEntities.dll
+C:\Users\student\Desktop\RKIS_repos-Lab3\todo\TodoEntities\obj\Debug\TodoEntities.pdb
+C:\Users\VadyaPOOL\Desktop\Mine-main\todo\TodoEntities\bin\Debug\TodoEntities.dll
+C:\Users\VadyaPOOL\Desktop\Mine-main\todo\TodoEntities\bin\Debug\TodoEntities.pdb
+C:\Users\VadyaPOOL\Desktop\Mine-main\todo\TodoEntities\obj\Debug\TodoEntities.csproj.AssemblyReference.cache
+C:\Users\VadyaPOOL\Desktop\Mine-main\todo\TodoEntities\obj\Debug\TodoEntities.csproj.CoreCompileInputs.cache
+C:\Users\VadyaPOOL\Desktop\Mine-main\todo\TodoEntities\obj\Debug\TodoEntities.dll
+C:\Users\VadyaPOOL\Desktop\Mine-main\todo\TodoEntities\obj\Debug\TodoEntities.pdb
