@@ -13,6 +13,5 @@ namespace todo
     /// </summary>
     public partial class App : Application
     {
-
     }
 }

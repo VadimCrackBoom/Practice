@@ -5,29 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:todo"
         mc:Ignorable="d"
-        Title="Registration" Height="600" Width="800" WindowState="Minimized" MinWidth="800" MinHeight="600">
+        Title="Registration" WindowStartupLocation="CenterScreen" Height="600" Width="800" MinWidth="800" MinHeight="600">
     <Grid Height="600" Width="800">
         <Image Height="150" Margin="51,42,593,0" VerticalAlignment="Top" Source="/logo.png"/>
-        <Label Content="Welcome back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="auto" FontSize="36" Margin="426,42,0,0"/>
-        <Label Content="Имя пользователя" FontSize="22" Margin="426,100,173,457"/>
-        <TextBox x:Name="nameTB" Margin="431,143,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="auto" Text="Введите имя пользователя" GotFocus="RemoveText" LostFocus="AddText" Tag="Введите имя пользователя" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4" TextChanged="nameTB_TextChanged">
+        <Label Content="Welcome back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="50" FontSize="36" Margin="426,42,0,0" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
+        <Label Content="Имя пользователя" FontSize="22" Margin="426,100,173,457" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
+        <TextBox x:Name="nameTB" Margin="431,143,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="18" Text="Введите имя пользователя" GotFocus="RemoveText" LostFocus="AddText" Tag="Введите имя пользователя" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
             </TextBox.BorderBrush>
         </TextBox>
-        <Label Content="Ваша почта" FontSize="22" Margin="426,172,195,390"/>
+        <Label Content="Ваша почта" FontSize="22" Margin="426,172,195,390" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <TextBox x:Name="emailTB" Margin="431,215,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="18" Text="exam@yandex.ru" GotFocus="RemoveText" LostFocus="AddText" Tag="exam@yandex.ru" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
             </TextBox.BorderBrush>
         </TextBox>
-        <Label Content="Пароль" FontSize="22" Margin="426,253,195,309"/>
+        <Label Content="Пароль" FontSize="22" Margin="426,253,195,309" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <TextBox x:Name="passwordTB" Margin="431,296,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="18" Text="Введите пароль" GotFocus="RemoveText" LostFocus="AddText" Tag="Введите пароль" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
             </TextBox.BorderBrush>
         </TextBox>
-        <Label Content="Повторите пароль" FontSize="22" Margin="426,331,173,231"/>
+        <Label Content="Повторите пароль" FontSize="22" Margin="426,331,173,231" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <TextBox x:Name="againPasswordTB" Margin="431,374,69,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="18" Text="Повторите пароль" GotFocus="RemoveText" LostFocus="AddText" Tag="Повторите пароль" BorderThickness="0,0,0,1" FontSize="14" Opacity="0.4">
             <TextBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -36,14 +36,14 @@
                 </LinearGradientBrush>
             </TextBox.BorderBrush>
         </TextBox>
-        <Button Margin="431,472,69,88" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Назад" Width="300" Height="40" FontSize="16" Click="Button_Click">
+        <Button Margin="431,472,69,88" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Назад" Width="300" Height="40" FontSize="16" Click="Button_Click" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5, 5, 20, 20"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Margin="431,426,69,134" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Зарегистрироваться" Width="300" Height="40" FontSize="16" Click="Button_Click_1">
+        <Button Margin="431,426,69,134" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Зарегистрироваться" Width="300" Height="40" FontSize="16" Click="Button_Click_1" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20, 20, 5, 5"/>
