@@ -74,8 +74,8 @@ namespace todo
                 if (user != null)
                 {
                     MessageBox.Show($"Вход выполнен успешно!");
-                    Main main = new Main();
-                    main.Show();
+                    MainEmpty mainEmpty = new MainEmpty();
+                    mainEmpty.Show();
                     this.Hide();
                 }
 

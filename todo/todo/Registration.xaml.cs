@@ -22,6 +22,8 @@ namespace todo
     /// </summary>
     public partial class Registration : Window
     {
+        UserRepository userRepository = new UserRepository();
+
         public Registration()
         {
             InitializeComponent();

@@ -39,6 +39,9 @@ namespace todo
         public ObservableCollection<TaskModel> tasks { get; private set; }
 
         private UserRepository _userRepository;
+
+        
+
         public Main()
         {
             InitializeComponent();
@@ -61,6 +64,14 @@ namespace todo
                 new TaskModel { Title = "Задача 4", DueDate = DateTime.Now.AddDays(4), IsCompleted = false, Description = "Описание задачи 4" },
                 new TaskModel { Title = "Задача 5", DueDate = DateTime.Now.AddDays(5), IsCompleted = false, Description = "Описание задачи 5" }
                 };
+
+            if (UserRepository.CurrentUser != null)
+            {
+                tasks = new ObservableCollection<TaskModel>
+                {
+
+                };
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -179,7 +190,8 @@ namespace todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            ManagerTasks managerTasks = new ManagerTasks();
+            managerTasks.Show();
         }
     }
 }

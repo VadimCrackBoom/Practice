@@ -10,21 +10,21 @@
         <Label Content="Название" HorizontalAlignment="Left" Height="48" Margin="41,31,0,0" VerticalAlignment="Top" Width="192" FontSize="16" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <Label Content="Категория" HorizontalAlignment="Left" Height="48" Margin="41,114,0,0" VerticalAlignment="Top" Width="192" FontSize="16" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <Label Content="Описание" HorizontalAlignment="Left" Height="48" Margin="41,217,0,0" VerticalAlignment="Top" Width="192" FontSize="16" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
-        <TextBox Margin="41,74,524,325">
+        <TextBox x:Name="taskTitle" Margin="41,74,524,325">
   <TextBox.Resources>
     <Style TargetType="{x:Type Border}">
       <Setter Property="CornerRadius" Value="6"/>
     </Style>
   </TextBox.Resources>
 </TextBox>
-        <TextBox Margin="41,167,524,232">
+        <TextBox x:Name="GroupTitle" Margin="41,167,524,232">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox Margin="41,265,524,93">
+        <TextBox x:Name="DescriptionTitle" Margin="41,265,524,93">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
