@@ -21,29 +21,55 @@ namespace todo
     /// </summary>
     public partial class ManagerTasks : Window
     {
-
-        public ObservableCollection<TaskModel> tasks { get; private set; }
-
         private Main _main;
-        public ManagerTasks()
+
+        public ManagerTasks(Main main)
         {
             InitializeComponent();
+            _main = main;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // Получаем данные из полей ввода
+            string taskName = taskTitle.Text;
+            string category = GroupTitle.Text;
+            string description = DescriptionTitle.Text;
+            DateTime? dueDate = datePicker.SelectedDate;
 
-            Main main = new Main();
-            main.Show();
+            // Проверяем, что все обязательные поля заполнены
+            if (string.IsNullOrWhiteSpace(taskName))
+            {
+                MessageBox.Show("Введите название задачи!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(category))
+            {
+                MessageBox.Show("Введите категорию задачи!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Создаем объект задачи
+            TaskModel newTask = new TaskModel
+            {
+                Title = taskName,
+                Category = category,
+                Description = description,
+                DueDate = dueDate ?? DateTime.Now.AddDays(1), // Если дата не выбрана, используем завтрашний день
+                IsCompleted = false
+            };
+
+            // Добавляем задачу в основное окно
+            _main.AddTask(newTask);
+
+            // Закрываем окно
             this.Close();
         }
 
-        private void LoadTasks()
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            tasks = new ObservableCollection<TaskModel>
-                {
-                new TaskModel { Title = "", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "" }
-                };
+            this.Close();
         }
     }
 }

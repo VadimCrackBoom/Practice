@@ -6,33 +6,33 @@
         xmlns:local="clr-namespace:todo"
         mc:Ignorable="d"
         Title="ManagerTasks" Height="450" Width="800">
-    <Grid Background="#D9D9D9">
+    <Canvas Background="#D9D9D9">
         <Label Content="Название" HorizontalAlignment="Left" Height="48" Margin="41,31,0,0" VerticalAlignment="Top" Width="192" FontSize="16" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <Label Content="Категория" HorizontalAlignment="Left" Height="48" Margin="41,114,0,0" VerticalAlignment="Top" Width="192" FontSize="16" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <Label Content="Описание" HorizontalAlignment="Left" Height="48" Margin="41,217,0,0" VerticalAlignment="Top" Width="192" FontSize="16" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
-        <TextBox x:Name="taskTitle" Margin="41,74,524,325">
-  <TextBox.Resources>
-    <Style TargetType="{x:Type Border}">
-      <Setter Property="CornerRadius" Value="6"/>
-    </Style>
-  </TextBox.Resources>
-</TextBox>
-        <TextBox x:Name="GroupTitle" Margin="41,167,524,232">
+        <TextBox x:Name="taskTitle" Canvas.Left="41" Canvas.Top="74" Width="192" HorizontalAlignment="Left" VerticalAlignment="Center" Height="33">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="DescriptionTitle" Margin="41,265,524,93">
+        <TextBox x:Name="GroupTitle" Canvas.Left="41" Canvas.Top="152" Width="193" HorizontalAlignment="Left" Height="33" VerticalAlignment="Center">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <DatePicker HorizontalAlignment="Left" Height="128" Margin="475,74,0,0" VerticalAlignment="Top" Width="219"/>
-        <Button Margin="56,363,524,28" Background="#50AF54" Content="Создать" FontSize="14" Foreground="White" Click="Button_Click" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor">
+        <TextBox x:Name="DescriptionTitle" Canvas.Left="41" Canvas.Top="265" Width="245" HorizontalAlignment="Center" Height="68" VerticalAlignment="Center">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="6"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <DatePicker x:Name="datePicker" HorizontalAlignment="Left" Height="128" Margin="475,74,0,0" VerticalAlignment="Top" Width="219"/>
+        <Button Background="#50AF54" Content="Создать" FontSize="14" Foreground="White" Click="Button_Click" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor" Height="44" Canvas.Left="56" Canvas.Top="363" Width="242">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="6"/>
@@ -41,7 +41,7 @@
             </Button.Resources>
 
         </Button>
-        <Button Margin="475,363,105,28" Background="#E04321" Content="Отмена" FontSize="14" Foreground="White" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor">
+        <Button Background="#E04321" Content="Отмена" FontSize="14" Foreground="White" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor" Height="44" Canvas.Left="475" Canvas.Top="363" Width="239" Click="Button_Click_1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
@@ -49,5 +49,5 @@
             </Button.Resources>
         </Button>
 
-    </Grid>
+    </Canvas>
 </Window>

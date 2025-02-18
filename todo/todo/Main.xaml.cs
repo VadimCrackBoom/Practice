@@ -87,16 +87,16 @@ namespace todo
 
         private void taskListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (taskListBox.SelectedItem is TaskModel selectedTask)
-            {
+            if(taskListBox.SelectedItem is TaskModel selectedTask)
+    {
                 taskTitleTextBlock.Text = selectedTask.Title;
-                taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("dd.MM.yyyy");
+                taskDueDateTextBlock.Text = selectedTask.DueDate?.ToString("dd.MM.yyyy");
                 taskDescriptionTextBlock.Text = selectedTask.Description;
                 okButton.Visibility = Visibility.Visible;
                 deleteButton.Visibility = Visibility.Visible;
             }
 
-            if(taskListBox.SelectedItem != null)
+            if (taskListBox.SelectedItem != null)
             {
                 var listBoxItem = taskListBox.ItemContainerGenerator.ContainerFromItem(taskListBox.SelectedItem) as ListBoxItem;
 
@@ -190,8 +190,19 @@ namespace todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ManagerTasks managerTasks = new ManagerTasks();
+            ManagerTasks managerTasks = new ManagerTasks(this);
             managerTasks.Show();
+        }
+
+        public void AddTask(TaskModel task)
+        {
+            if (task == null)
+            {
+                throw new ArgumentNullException(nameof(task), "Задача не может быть null.");
+            }
+
+            tasks.Add(task); // Добавляем задачу в коллекцию
+            taskListBox.Items.Refresh(); // Обновляем ListBox
         }
     }
 }
