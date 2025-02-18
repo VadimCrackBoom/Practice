@@ -34,3 +34,9 @@ C:\Users\student\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.
 C:\Users\student\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.csproj.CoreCompileInputs.cache
 C:\Users\student\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.dll
 C:\Users\student\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.pdb
+C:\Users\VadyaPOOL\Desktop\Practice-Lab5\todo\TodoEntities\bin\Debug\TodoEntities.dll
+C:\Users\VadyaPOOL\Desktop\Practice-Lab5\todo\TodoEntities\bin\Debug\TodoEntities.pdb
+C:\Users\VadyaPOOL\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.csproj.AssemblyReference.cache
+C:\Users\VadyaPOOL\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.csproj.CoreCompileInputs.cache
+C:\Users\VadyaPOOL\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.dll
+C:\Users\VadyaPOOL\Desktop\Practice-Lab5\todo\TodoEntities\obj\Debug\TodoEntities.pdb
