@@ -37,6 +37,7 @@ namespace todo
         }
 
         public ObservableCollection<TaskModel> tasks { get; private set; }
+        public ObservableCollection<CompletedTasks> CompletedTasks { get; private set; }
 
         private UserRepository _userRepository;
 
@@ -47,6 +48,8 @@ namespace todo
             InitializeComponent();
             LoadTasks();
             taskListBox.ItemsSource = tasks;
+            CompletedTasks = new ObservableCollection<CompletedTasks>();
+            HistoryListBox.ItemsSource = CompletedTasks;
 
             if (UserRepository.CurrentUser != null)
             {
@@ -58,18 +61,12 @@ namespace todo
         {
             tasks = new ObservableCollection<TaskModel>
                 {
-                new TaskModel { Title = "Задача 1", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "Описание задачи 1" },
-                new TaskModel { Title = "Задача 2", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Описание задачи 2" },
-                new TaskModel { Title = "Задача 3", DueDate = DateTime.Now.AddDays(3), IsCompleted = false, Description = "Описание задачи 3" },
-                new TaskModel { Title = "Задача 4", DueDate = DateTime.Now.AddDays(4), IsCompleted = false, Description = "Описание задачи 4" },
-                new TaskModel { Title = "Задача 5", DueDate = DateTime.Now.AddDays(5), IsCompleted = false, Description = "Описание задачи 5" }
                 };
 
             if (UserRepository.CurrentUser != null)
             {
                 tasks = new ObservableCollection<TaskModel>
                 {
-
                 };
             }
         }
@@ -123,13 +120,99 @@ namespace todo
             }
         }
 
+        private void HistoryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (HistoryListBox.SelectedItem is CompletedTasks selectedTask)
+            {
+                // Обновляем текстовые блоки с информацией о задаче
+                taskTitleTextBlock.Text = selectedTask.Title;
+                taskDueDateTextBlock.Text = selectedTask.DueDate?.ToString("dd.MM.yyyy");
+                taskDescriptionTextBlock.Text = selectedTask.Description;
+            }
+
+            if (HistoryListBox.SelectedItem != null)
+{
+                var listBoxItem = HistoryListBox.ItemContainerGenerator.ContainerFromItem(HistoryListBox.SelectedItem) as ListBoxItem;
+
+                if (listBoxItem != null)
+                {
+                    listBoxItem.Background = Brushes.LightGreen;
+                    listBoxItem.BorderThickness = new Thickness(0);
+                    listBoxItem.FocusVisualStyle = null;
+                    okButton.Visibility = Visibility.Collapsed;
+                    deleteButton.Visibility = Visibility.Collapsed;
+
+
+                }
+                else
+                {
+                    // Если ничего не выделено, очищаем текстовые блоки
+                    ClearTaskDetails();
+                }
+            }
+
+            foreach (var item in HistoryListBox.Items)
+            {
+                if (item != HistoryListBox.SelectedItem)
+                {
+                    var listBoxItem = taskListBox.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
+
+                    if (listBoxItem != null)
+                    {
+                        listBoxItem.Background = Brushes.Transparent;
+                    }
+                }
+            }
+        }
+
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            TaskModel selectedTask = (TaskModel)taskListBox.SelectedItem;
+            if (taskListBox.SelectedItem is TaskModel selectedTask)
+            {
+                selectedTask.IsCompleted = true;
 
-            selectedTask.IsCompleted = true;
+                // Перемещаем задачу в историю
+                CompletedTasks.Add(new CompletedTasks
+                {
+                    Title = selectedTask.Title,
+                    DueDate = selectedTask.DueDate,
+                    Description = selectedTask.Description,
+                    Category = selectedTask.Category,
+                    IsCompleted = true
+                });
 
-            taskListBox.Items.Refresh();
+                // Удаляем задачу из списка текущих задач
+                tasks.Remove(selectedTask);
+
+                // Обновляем ListBox
+                taskListBox.Items.Refresh();
+            }
+        }
+
+        private void History_Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Переключаем видимость HistoryListBox
+            if (HistoryListBox.Visibility == Visibility.Visible)
+            {
+                HistoryListBox.Visibility = Visibility.Collapsed; // Скрываем
+            }
+            else
+            {
+                HistoryListBox.Visibility = Visibility.Visible; // Показываем
+            }
+        }
+
+        private void Tasks_Label_MouseDown(Object sender, MouseButtonEventArgs e)
+        {
+            if (taskListBox.Visibility == Visibility.Visible)
+            {
+                taskListBox.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            {
+                taskListBox.Visibility = Visibility.Visible;
+            }
         }
 
 

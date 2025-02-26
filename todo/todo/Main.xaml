@@ -8,10 +8,78 @@
         Title="Main" Height="600" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="800" MinHeight="600" Loaded="Window_Loaded">
     <Grid Height="600" Width="800">
         <Image HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="76" Source="/profilicon.png" Margin="10,10,0,0"/>
-        <ListBox x:Name="taskListBox" SelectionChanged="taskListBox_SelectionChanged" Margin="158,133,323,50" BorderBrush="White" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListBox x:Name="HistoryListBox" Margin="158,126,323,50" BorderBrush="White" BorderThickness="2" Visibility="Visible" SelectionChanged="HistoryListBox_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightGreen"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="2"/>
+                            <!-- Светло-зелёный цвет -->
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="Transparent" Margin="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <!-- Для CheckBox -->
+                                <ColumnDefinition Width="*"/>
+                                <!-- Для текста задачи -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- CheckBox -->
+                            <CheckBox Grid.Column="0" VerticalAlignment="Top" Margin="5,-9,5,0" IsChecked="{Binding IsCompleted}">
+                                <CheckBox.Style>
+                                    <Style TargetType="CheckBox">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="CheckBox">
+                                                    <Grid>
+                                                        <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="#6074F9" StrokeThickness="3" Width="15" Height="15" Margin="0,15,0,0"/>
+                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="Gray" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="#FFF96060" />
+                                                            <Setter TargetName="Ellipse" Property="Fill" Value="#FFF96060" />
+                                                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="LightGray" />
+                                                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </CheckBox.Style>
+                            </CheckBox>
+
+                            <!-- Текст задачи -->
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Title}" FontSize="16" Foreground="Gray" TextDecorations="Strikethrough" Margin="10,0,0,0" Width="240"/>
+                                <TextBlock Text="{Binding DueDate, StringFormat='{}{0:dd.MM.yyyy}'}" FontSize="14" Foreground="Gray" TextDecorations="Strikethrough" Margin="35,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="taskListBox" SelectionChanged="taskListBox_SelectionChanged" Margin="158,126,323,50" BorderBrush="White" Visibility="Collapsed" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="CornflowerBlue"/>
@@ -39,7 +107,7 @@
                                                 <ControlTemplate TargetType="CheckBox">
                                                     <Grid>
                                                         <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="#6074F9" StrokeThickness="3" Width="15" Height="15" Margin="0,15,0,0"/>
-                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="White" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
+                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="Gray" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsChecked" Value="True">
@@ -62,7 +130,7 @@
 
                             <TextBlock Grid.Column="1" Text="{Binding Title}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
                         </Grid>
-                        <TextBlock Text="{Binding DueDate, StringFormat='{}{0:dd.MM.yyyy}'}" Margin="35,0,0,0"/>
+                        <TextBlock Text="{Binding DueDate, StringFormat='{}{0:dd.MM.yyyy}'}" Margin="35,0,0,0" Foreground="Gray"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -93,12 +161,12 @@
         <Label Content="Работа" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFFF5D00" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <Label Content="Учёба" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF004AC3" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
         <Label Content="Отдых" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFB700FF" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
-        <Label x:Name="History_Label" Content="История" HorizontalAlignment="Left" Margin="22,205,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
-        <Label x:Name="TimFile" Content="Задачи" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor"/>
-        <ListBox Margin="501,90,10,50" BorderBrush="Black" BorderThickness="2,2,2,2">
-            <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15"/>
-            <TextBlock x:Name="taskDueDateTextBlock" FontSize="16"/>
-            <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="0,10,0,0"/>
+        <Label x:Name="History_Label" Content="История" HorizontalAlignment="Left" Margin="22,205,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor" MouseDown="History_Label_MouseDown"/>
+        <Label x:Name="Tasks" Content="Задачи" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor" MouseDown="Tasks_Label_MouseDown"/>
+        <ListBox x:Name="DescriptionListBox" Margin="501,90,10,50" BorderBrush="Black" BorderThickness="2,2,2,2">
+            <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15" Width="209"/>
+            <TextBlock x:Name="taskDueDateTextBlock" FontSize="16" Width="209"/>
+            <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="0,10,0,0" Width="209"/>
         </ListBox>
         <Button x:Name="okButton" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Готово" FontSize="16" Margin="522,350,32,210" Click="okButton_Click" Visibility="Collapsed">
             <Button.Resources>
@@ -115,6 +183,6 @@
             </Button.Resources>
         </Button>
         <TextBlock Text ="{Binding Name}" x:Name="username" HorizontalAlignment="Left" Margin="7,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82"/>
-        
+
     </Grid>
 </Window>
