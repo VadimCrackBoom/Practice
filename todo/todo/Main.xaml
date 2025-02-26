@@ -26,7 +26,7 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Background="Transparent" Margin="2">
+                    <StackPanel Margin="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -44,7 +44,7 @@
                                                 <ControlTemplate TargetType="CheckBox">
                                                     <Grid>
                                                         <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="#6074F9" StrokeThickness="3" Width="15" Height="15" Margin="0,15,0,0"/>
-                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="Gray" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
+                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="GhostWhite" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0" OpacityMask="White"/>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsChecked" Value="True">

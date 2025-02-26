@@ -139,14 +139,15 @@ namespace todo
                     listBoxItem.Background = Brushes.LightGreen;
                     listBoxItem.BorderThickness = new Thickness(0);
                     listBoxItem.FocusVisualStyle = null;
+                    listBoxItem.Foreground = Brushes.Gray;
                     okButton.Visibility = Visibility.Collapsed;
                     deleteButton.Visibility = Visibility.Collapsed;
 
 
                 }
+
                 else
                 {
-                    // Если ничего не выделено, очищаем текстовые блоки
                     ClearTaskDetails();
                 }
             }
