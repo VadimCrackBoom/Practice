@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace todo
 {
-     public class Dictionary
+    public class Dictionary
      {
             // Создаем словарь для хранения информации об элементах кода
         Dictionary<string, string> codeElements = new Dictionary<string, string>()
@@ -81,5 +81,7 @@ namespace todo
 
 
         };
-     }
+
+        public Dictionary<string, string> CodeElements { get => codeElements; set => codeElements = value; }
+    }
 }
