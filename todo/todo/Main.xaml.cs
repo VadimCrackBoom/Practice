@@ -25,7 +25,6 @@ namespace todo
     public partial class Main : Window
     {
         private string _username;
-        Dictionary<string, string> codeElements = new Dictionary<string, string>();
 
         public string UserName
         {
