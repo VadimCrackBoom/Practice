@@ -21,6 +21,10 @@
                             <Setter Property="Margin" Value="2"/>
                             <!-- Светло-зелёный цвет -->
                         </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <!-- Возврат к серому цвету текста -->
+                        </Trigger>
                     </Style.Triggers>
                 </Style>
             </ListBox.ItemContainerStyle>
