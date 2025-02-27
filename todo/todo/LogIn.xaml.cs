@@ -1,9 +1,17 @@
 ﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using static todo.Registration;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using todo.Repository;
 
 namespace todo
 {
@@ -12,14 +20,10 @@ namespace todo
     /// </summary>
     public partial class LogIn : Window
     {
-        private InputValidator _validator;
-
         public LogIn()
         {
             InitializeComponent();
-            _validator = new InputValidator();
         }
-
         public void RemoveText(object sender, EventArgs e)
         {
             TextBox instance = (TextBox)sender;
@@ -33,7 +37,8 @@ namespace todo
             TextBox instance = (TextBox)sender;
             if (string.IsNullOrWhiteSpace(instance.Text))
                 instance.Text = instance.Tag.ToString();
-            instance.Opacity = 0.4;
+            if (instance.Text != "")
+                instance.Opacity = 0.4;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,83 +53,37 @@ namespace todo
             string email = emailTB.Text;
             string password = passwordTB.Text;
 
-            bool isEmailValid = _validator.ValidateEmail(email);
-            bool isPasswordValid = _validator.ValidatePassword(password);
-
-            if (isEmailValid && isPasswordValid && emailTB.Text != "exam@yandex.ru" && passwordTB.Text != "Введите пароль")
+            if (!email.ValidateEmail())
             {
-                // Проверка данных в файле пользователей
-                if (VerifyUser(email, password))
+                // error
+                MessageBox.Show("Некорректная почта");
+                return;
+            }
+
+            if (!password.ValidatePassword())
+            {
+                MessageBox.Show("Пароль должен содержать 6 символов или более");
+                return;
+            }
+
+            if (email.ValidateEmail() && password.ValidatePassword())
+            {
+                var userRep = new UserRepository();
+                var user = userRep.GetUser(emailTB.Text, passwordTB.Text);
+
+                if (user != null)
                 {
+                    MessageBox.Show($"Вход выполнен успешно!");
                     MainEmpty mainEmpty = new MainEmpty();
                     mainEmpty.Show();
-                    this.Close();
+                    this.Hide();
                 }
+
                 else
                 {
-                    MessageBox.Show("Неверный email или пароль.");
+                    MessageBox.Show("Неверный email или пароль");
                 }
             }
-            else
-            {
-                // Иначе выводим сообщение об ошибке 
-                string errorMessage = "Ошибка валидации:";
-                if (!isEmailValid)
-                    errorMessage += "\nНеверный email.";
-                if (!isPasswordValid)
-                    errorMessage += "\nПароль должен содержать не менее 6 символов.";
-
-                MessageBox.Show(errorMessage);
-            }
-        }
-
-        private bool VerifyUser(string email, string password)
-        {
-            string filePath = "C:\\Users\\student\\Desktop\\Todo.Desktop\\todo\\todo\\Repository\\Users.txt";
-
-            if (!File.Exists(filePath))
-            {
-                MessageBox.Show("Файл пользователей не найден.");
-                return false;
-            }
-
-            string[] userRecords = File.ReadAllLines(filePath);
-            foreach (string record in userRecords)
-            {
-                string[] userData = record.Split(';');
-                if (userData.Length >= 3)
-                {
-                    string storedName = userData[0];
-                    string storedEmail = userData[1];
-                    string storedPassword = userData[2];
-
-                    if (storedEmail.Equals(email, StringComparison.OrdinalIgnoreCase) && storedPassword == password)
-                    {
-                        return true; // Успешная проверка
-                    }
-                }
-            }
-
-            return false; // Проверка не удалась
-        }
-    }
-
-    public class InputValidator
-    {
-        public bool ValidateEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            string emailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
-                + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
-                + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
-            return Regex.IsMatch(email, emailPattern);
-        }
-
-        public bool ValidatePassword(string password)
-        {
-            return !string.IsNullOrWhiteSpace(password) && password.Length >= 6;
         }
     }
 }

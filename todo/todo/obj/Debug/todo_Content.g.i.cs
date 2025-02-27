@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("repository/users.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("%d0%a4%d0%be%d1%82%d0%be%20%d0%bf%d1%80%d0%be%d1%84%d0%b8%d0%bb%d1%8f.png")]
 
 
