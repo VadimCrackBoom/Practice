@@ -36,6 +36,7 @@ namespace todo
             string category = GroupTitle.Text;
             string description = DescriptionTitle.Text;
             DateTime? dueDate = datePicker.SelectedDate;
+            string time = TimePicker_TextBox.Text;
 
             // Проверяем, что все обязательные поля заполнены
             if (string.IsNullOrWhiteSpace(taskName))
@@ -70,6 +71,11 @@ namespace todo
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ComboBox_Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

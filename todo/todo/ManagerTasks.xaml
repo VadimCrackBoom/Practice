@@ -17,7 +17,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="GroupTitle" Canvas.Left="41" Canvas.Top="152" Width="193" HorizontalAlignment="Left" Height="33" VerticalAlignment="Center">
+        <TextBox x:Name="GroupTitle" Canvas.Left="41" Canvas.Top="152" Width="192" HorizontalAlignment="Center" Height="33" VerticalAlignment="Center">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
@@ -48,6 +48,14 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <TextBox x:Name="TimePicker_TextBox" Canvas.Left="487" TextWrapping="Wrap" Canvas.Top="282" Width="195" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="6"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Время" Height="36" Canvas.Left="487" Canvas.Top="241" Width="195" FontFamily="pack://application:,,,/todo;component/Fonts/#Actor" FontSize="16"/>
 
     </Canvas>
 </Window>
