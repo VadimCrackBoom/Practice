@@ -91,33 +91,7 @@ namespace todo
                 taskDescriptionTextBlock.Text = selectedTask.Description;
                 okButton.Visibility = Visibility.Visible;
                 deleteButton.Visibility = Visibility.Visible;
-            }
-
-            if (taskListBox.SelectedItem != null)
-            {
-                var listBoxItem = taskListBox.ItemContainerGenerator.ContainerFromItem(taskListBox.SelectedItem) as ListBoxItem;
-
-                if (listBoxItem != null)
-                {
-                    listBoxItem.Background = Brushes.CornflowerBlue;
-                    listBoxItem.BorderThickness = new Thickness(0);
-                    listBoxItem.FocusVisualStyle = null;
-                    listBoxItem.Foreground = Brushes.Black;
-                }
-            }
-
-            foreach (var item in taskListBox.Items)
-            {
-                if (item != taskListBox.SelectedItem)
-                {
-                    var listBoxItem = taskListBox.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
-
-                    if (listBoxItem != null)
-                    {
-                        listBoxItem.Background = Brushes.Transparent;
-                    }
-                }
-            }
+            }   
         }
 
         private void HistoryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -136,32 +110,10 @@ namespace todo
 
                 if (listBoxItem != null)
                 {
-                    listBoxItem.Background = Brushes.LightGreen;
-                    listBoxItem.BorderThickness = new Thickness(0);
-                    listBoxItem.FocusVisualStyle = null;
-                    listBoxItem.Foreground = Brushes.Gray;
                     okButton.Visibility = Visibility.Collapsed;
                     deleteButton.Visibility = Visibility.Collapsed;
 
 
-                }
-
-                else
-                {
-                    ClearTaskDetails();
-                }
-            }
-
-            foreach (var item in HistoryListBox.Items)
-            {
-                if (item != HistoryListBox.SelectedItem)
-                {
-                    var listBoxItem = taskListBox.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
-
-                    if (listBoxItem != null)
-                    {
-                        listBoxItem.Background = Brushes.Transparent;
-                    }
                 }
             }
         }

@@ -60,7 +60,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CompletedTasks.cs" />
-    <Compile Include="Dictionary.cs" />
     <Compile Include="InputValidator.cs" />
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -111,6 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="LogIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
