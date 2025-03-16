@@ -17,7 +17,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="GroupTitle" Canvas.Left="41" Canvas.Top="152" Width="193" HorizontalAlignment="Left" Height="33" VerticalAlignment="Center">
+        <TextBox x:Name="GroupTitle" Canvas.Left="41" Canvas.Top="152" Width="192" HorizontalAlignment="Center" Height="33" VerticalAlignment="Center">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="6"/>
