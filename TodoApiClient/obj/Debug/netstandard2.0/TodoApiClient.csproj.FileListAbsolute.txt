@@ -1,0 +1,13 @@
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.AssemblyInfoInputs.cache
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.AssemblyInfo.cs
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\bin\Debug\netstandard2.0\TodoApiClient.deps.json
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\bin\Debug\netstandard2.0\TodoApiClient.dll
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\bin\Debug\netstandard2.0\TodoApiClient.pdb
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\bin\Debug\netstandard2.0\TodoEntities.dll
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\bin\Debug\netstandard2.0\TodoEntities.pdb
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.csproj.CopyComplete
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.dll
+C:\Users\student\Desktop\Practice-Lab8\Practice-Lab_page — копия\TodoApiClient\obj\Debug\netstandard2.0\TodoApiClient.pdb
