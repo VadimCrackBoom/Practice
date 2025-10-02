@@ -1,0 +1,7 @@
+C:\Users\Public\Проект 1\Task 3\bin\Debug\Task 3.exe.config
+C:\Users\Public\Проект 1\Task 3\bin\Debug\Task 3.exe
+C:\Users\Public\Проект 1\Task 3\bin\Debug\Task 3.pdb
+C:\Users\Public\Проект 1\Task 3\obj\Debug\Task 3.csproj.AssemblyReference.cache
+C:\Users\Public\Проект 1\Task 3\obj\Debug\Task 3.csproj.CoreCompileInputs.cache
+C:\Users\Public\Проект 1\Task 3\obj\Debug\Task 3.exe
+C:\Users\Public\Проект 1\Task 3\obj\Debug\Task 3.pdb
